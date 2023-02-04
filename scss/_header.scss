@@ -1,0 +1,115 @@
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  transition: background-color 0.6s;
+
+  &::after {
+    display: block;
+    content: '';
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    box-shadow: transparent 0px 0px 3px 1px;
+    transition: box-shadow 1s 3s cubic-bezier(0.47, 0.01, 0.33, 1);
+  }
+
+  &--loaded::after {
+    box-shadow: #8bbdf7 0px 0px 3px 1px;
+  }
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 40px 30px;
+  position: relative;
+  transform: scale(0.9) translateY(-120%) translateX(20%);
+  transition: padding 0.6s, transform 3s cubic-bezier(0.47, 0.01, 0.33, 1);
+
+  &--loaded {
+    transform: scale(1) translateY(0) translateX(0);
+  }
+
+  &--loaded::after {
+    box-shadow: #8bbdf7 0px 0px 3px 1px;
+  }
+
+
+  @media (max-width:992px) {
+    padding: 10px 30px;
+    transform: scale(1) translateY(0) translateX(0);
+  }
+
+}
+
+.menu {
+  display: flex;
+  gap: 30px;
+
+  &__link {
+    position: relative;
+    font-size: 20px;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px #ffffff;
+
+
+    &::before {
+      content: attr(data-value);
+      position: absolute;
+      height: 100%;
+      width: 0;
+      color: #ffffff;
+      overflow: hidden;
+      border-right: 4px solid #ffffff;
+      text-shadow: rgb(121 178 211) 1px 0 10px;
+      transition: all 0.5s;
+    }
+
+    &:hover::before {
+      width: 100%;
+      border-radius: 6px;
+    }
+
+    @media (max-width:992px) {
+      display: block;
+      line-height: 2;
+    }
+  }
+
+  @media (max-width:992px) {
+    flex-direction: column;
+    padding: 50px;
+    height: calc(100vh - 62px);
+    width: 70%;
+    position: absolute;
+    top: 62px;
+    left: 0;
+    background-color: rgba(36, 60, 104, 0.768627451);
+    transform: rotateY(90deg);
+    transform-origin: left;
+    transition: transform 1s;
+
+    &--active {
+      overflow: auto;
+      transform: rotateY(0);
+    }
+  }
+}
+
+.header--scrl {
+
+  background-color: rgba(36, 60, 104, 0.768627451);
+
+  .nav {
+    padding: 10px 30px;
+  }
+
+}
